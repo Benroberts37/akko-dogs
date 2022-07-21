@@ -9,13 +9,21 @@ export default function DogList() {
     async function fetchData() {
         await axios.get('https://dog.ceo/api/breeds/list/all')
             .then((res) => {
-                const allDogs = res.data.message.message
-                setData(allDogs)
+                const allDogs = res.data.message
+                const namesOfBreeds = []
+                for (const key in allDogs) {
+                    namesOfBreeds.push(key)
+                    setData(namesOfBreeds)
+                }
                 console.log(data)
             })
             .catch((err) => {
                 console.log("Error:", err)
             })
+    }
+
+    let handleDogChange = (e) => {
+        setData(e.target.value)
     }
 
     useEffect(() => {
@@ -24,7 +32,14 @@ export default function DogList() {
 
 
     return (
-            'hello'
+            <div>
+                <select onChange={handleDogChange}>
+                    <option>Select a Dog</option>
+                        {data.map((dog) => 
+                            <option value={dog.value}>{dog}</option>
+                        )}
+                </select>
+            </div>
     )
 
 }
