@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import DogDetails from './DogDetails'
+import './dog.css' 
+
 
 
 export default function DogList() {
@@ -32,14 +33,23 @@ export default function DogList() {
 
 
     return (
-            <div>
-                <select onChange={handleDogChange}>
-                    <option>Select a Dog</option>
-                        {data.map((dog) => 
-                            <option value={dog.value}>{dog}</option>
-                        )}
-                </select>
+        <div>
+            <div className = 'largeContainer'>
+                {data.map((dog) => {
+                   return  <div key={dog} className = 'smallContainer'>{dog}</div>
+                })}
             </div>
+        </div>
     )
-
 }
+
+
+
+            // <div>
+            //     <select onChange={handleDogChange}>
+            //         <option>Select a Dog</option>
+            //             {data.map((dog) => 
+            //                 <option key={dog}>{dog}</option>
+            //             )}
+            //     </select>
+            // </div>
